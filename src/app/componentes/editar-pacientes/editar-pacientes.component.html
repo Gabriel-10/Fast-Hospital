@@ -1,0 +1,100 @@
+<body>
+  <input type="checkbox" id="check">
+  <!--header area start-->
+  <header>
+    <label for="check">
+      <i class="fas fa-bars" id="sidebar_btn"></i>
+    </label>
+    <div class="left_area">
+      <h3>Fast <span>Hospital</span></h3>
+    </div>
+    <div class="right_area">
+      <a href="#" class="logout_btn">Cerrar Sesión</a>
+    </div>
+  </header>
+  <!--header area end-->
+  <!--mobile navigation bar start-->
+  <div class="mobile_nav">
+    <div class="nav_bar">
+      <img src="assets/otro.png" class="mobile_profile_image" alt="">
+      <i class="fa fa-bars nav_btn"></i>
+    </div>
+    <div class="mobile_nav_items">
+      <a (click)="irHome()"><i class="fas fa-desktop"></i><span>Inicio</span></a>
+      <a href="#"><i class="fas fa-cogs"></i><span>Components</span></a>
+      <a href="#"><i class="fas fa-table"></i><span>Tables</span></a>
+      <a href="#"><i class="fas fa-th"></i><span>Forms</span></a>
+      <a href="#"><i class="fas fa-info-circle"></i><span>About</span></a>
+      <a href="#"><i class="fas fa-sliders-h"></i><span>Settings</span></a>
+    </div>
+  </div>
+  <!--mobile navigation bar end-->
+  <!--sidebar start-->
+  <div class="sidebar">
+    <div class="profile_info">
+      <img src="assets/otro.png" class="profile_image" alt="" />
+      <!--<img src="otro.png" class="profile_image" alt="">-->
+      <h4>Gabriel Guerrero</h4>
+    </div>
+    <a (click)="irHome()"><i class="fas fa-desktop"></i><span>Inicio</span></a>
+    <a href="#"><i class="fas fa-cogs"></i><span>Components</span></a>
+    <a href="#"><i class="fas fa-table"></i><span>Tables</span></a>
+    <a href="#"><i class="fas fa-th"></i><span>Forms</span></a>
+    <a href="#"><i class="fas fa-info-circle"></i><span>About</span></a>
+    <a href="#"><i class="fas fa-sliders-h"></i><span>Settings</span></a>
+  </div>
+  <!--sidebar end-->
+
+  <div class="content">
+    <div class="card">
+
+    </div>
+  </div>
+
+  <!--<script type="text/javascript">
+  $(document).ready(function(){
+    $('.nav_btn').click(function(){
+      $('.mobile_nav_items').toggleClass('active');
+    });
+  });
+  </script>-->
+
+  <ng-template #content let-c="close" let-d="dismiss">
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Hi there!</h4>
+      <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <p>Hello, World!</p>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-outline-dark" (click)="c('Save click')">Save</button>
+    </div>
+  </ng-template>
+
+  <ng-template #eliminar let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title">Eliminar Registro</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <p>¿Estás seguro de eliminar este registro?&hellip;</p>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
+    </div>
+  </ng-template>
+
+
+
+</body>
+
+
+
+
+
+

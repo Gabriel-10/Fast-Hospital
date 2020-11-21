@@ -1,0 +1,178 @@
+<body>
+    <input type="checkbox" id="check">
+    <!--header area start-->
+    <header>
+      <label for="check">
+        <i class="fas fa-bars" id="sidebar_btn"></i>
+      </label>
+      <div class="left_area">
+        <h3>Fast <span>Hospital</span></h3>
+      </div>
+      <div class="right_area">
+        <a href="#" class="logout_btn">Cerrar Sesión</a>
+      </div>
+    </header>
+    <!--header area end-->
+    <!--mobile navigation bar start-->
+    <div class="mobile_nav">
+      <div class="nav_bar">
+        <img src="assets/otro.png" class="mobile_profile_image" alt="">
+        <i (click)="salir=!salir" class="fa fa-bars nav_btn"></i>
+      </div>
+      <div class="mobile_nav_items" *ngIf="salir">
+        <a ><i class="fas fa-home"></i><span>Inicio</span></a>
+        <a href="#"><i class="fas fa-cogs"></i><span>Components</span></a>
+        <a href="#"><i class="fas fa-table"></i><span>Tables</span></a>
+        <a href="#"><i class="fas fa-th"></i><span>Forms</span></a>
+        <a href="#"><i class="fas fa-info-circle"></i><span>About</span></a>
+        <a href="#"><i class="fas fa-sliders-h"></i><span>Settings</span></a>
+      </div>
+    </div>
+    <!--mobile navigation bar end-->
+    <!--sidebar start-->
+    <div class="sidebar">
+      <div class="profile_info">
+        <img src="assets/otro.png" class="profile_image" alt="" />
+        <!--<img src="otro.png" class="profile_image" alt="">-->
+        <h4>Gabriel Guerrero</h4>
+      </div>
+      <a href="#"><i class="fas fa-desktop"></i><span>Inicio</span></a>
+      <a href="#"><i class="fas fa-cogs"></i><span>Components</span></a>
+      <a href="#"><i class="fas fa-table"></i><span>Tables</span></a>
+      <a href="#"><i class="fas fa-th"></i><span>Forms</span></a>
+      <a href="#"><i class="fas fa-info-circle"></i><span>About</span></a>
+      <a href="#"><i class="fas fa-sliders-h"></i><span>Settings</span></a>
+    </div>
+    <!--sidebar end-->
+
+    <div class="content">
+      <div class="card">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th scope="col">ID</th>
+              <th scope="col">Cédula</th>
+              <th scope="col">Nombre</th>
+              <th scope="col">Apellido</th>
+              <th scope="col">Email</th>
+              <th scope="col">Foto</th>
+              <th scope="col">Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let datosP of pacientes; index as indexP">
+              <th scope="row">{{indexP}}</th>
+              <td>{{datosP.CedulaPaciente}}</td>
+              <td>{{datosP.NombrePaciente}}</td>
+              <td>{{datosP.ApellidoPaciente}}</td>
+              <td>{{datosP.EmailPaciente}}</td>
+              <td>
+                <img src="{{datosP.Foto}}" alt="" width="50" height="50">
+              </td>
+              <td>
+                <button (click)="editarP(datosP.idPaciente)" style="font-size: 15px;" type="button" class="btn btn-outline-success mr-2 mb-2"><i class="fas fa-user-edit"></i></button>
+                <button style="font-size: 15px;" type="button" class="btn btn-outline-danger mr-2 mb-2" (click)="openVerticallyCentered(eliminar)" (click)="borrar(datosP.NombrePaciente, datosP.ApellidoPaciente)"><i class="fas fa-trash"></i></button>
+                <button style="font-size: 15px;" type="button" class="btn btn-outline-warning mb-2" (click)="open(content)"><i class="fas fa-address-book"></i></button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!--<script type="text/javascript">
+    $(document).ready(function(){
+      $('.nav_btn').click(function(){
+        $('.mobile_nav_items').toggleClass('active');
+      });
+    });
+    </script>-->
+
+    <!--MODAL PARA CITAS-->
+    <ng-template #content let-c="close" let-d="dismiss">
+      <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Registro De Consulta</h4>
+        <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="contenido">
+          <div class="otroma">
+            <form class="form-inline">
+              <div class="form-group">
+                <label for="">Nombre Del Paciente</label>
+                <input type="text" class="form-control" placeholder="Nombre Del Paciente">
+              </div>
+              <br>
+              <div class="form-group">
+                <label for="">Fecha De Consulta</label>
+                <div class="form-group">
+                  <div class="input-group">
+                    <input class="form-control" placeholder="yyyy/mm/dd"
+                           name="dp" [(ngModel)]="model" ngbDatepicker #d="ngbDatepicker">
+                    <div class="input-group-append">
+                      <button class="btn btn-outline-secondary calendar" (click)="d.toggle()" type="button"><i class="fas fa-calendar"></i></button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="">Motivo de la consulta</label>
+                <textarea class="form-control" name="" id="" cols="30" rows="10"></textarea>
+              </div>
+              <div class="form-group">
+                <label for="">Número De Seguro</label>
+                <input type="text" class="form-control" placeholder="Número De Seguro">
+              </div>
+              <div class="form-group">
+                <label for="">Monto Pagadp</label>
+                <input type="text" class="form-control" placeholder="Monto Pagado">
+              </div>
+              <div class="form-group">
+                <label for="">Nota</label>
+                <textarea name="" id="" cols="30" rows="10" class="form-control"></textarea>
+              </div>
+            </form>
+
+          </div>
+          <div class="laquemedemigana">
+            ok x2
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-dark" (click)="c('Save click')">Save</button>
+      </div>
+    </ng-template>
+
+    <!--MODAL PARA ELIMINAR-->
+    <ng-template #eliminar let-modal>
+      <div class="modal-header">
+        <h4 class="modal-title">Eliminar Registro</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>¿Estás seguro de eliminar el registro de {{nombre}}?</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
+      </div>
+    </ng-template>
+
+
+
+  </body>
+
+
+
+
+
+
+
+
+
+
+
